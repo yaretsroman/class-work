@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson-8</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: gray;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .container {
+            padding: 8px;
+            display: grid;
+            grid-template-rows: 1fr;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 5px;
+            min-height: 100vh;
+        }
+
+        .column {
+            background-color: #c9d3dd;
+            display: grid;
+            grid-template-rows: auto 1fr;
+        }
+
+        .header {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .content {
+            padding: 10px;
+            margin: 10px;
+            border: 1px dotted gray;
+        }
+
+        .item {
+            position: relative;
+            padding: .75rem 1.25rem;
+            margin-bottom: 1rem;
+            border: 1px solid transparent;
+            border-radius: .25rem;
+            color: #004085;
+            background-color: #cce5ff;
+        }
+
+        .dragging-over {
+            background-color: #e0e0e0;
+        }
+
+        .dragging {
+            border: 2px solid red !important;
+        }
+    </style>
+</head>
+<body>
+
+    <button>+</button>
+
+    <div class="container">
+        <div class="column">
+            <div class="header">Запланированно</div>
+            <div class="content droppable">
+                <div class="item draggable" draggable="true">Купить хлеб</div>
+                <div class="item draggable" draggable="true">Сделать ДЗ</div>
+                <div class="item draggable" draggable="true">Повторить замыкание</div>
+                <div class="item draggable" draggable="true">Погулять с собакой</div>
+            </div> 
+        </div>
+        <div class="column">
+            <div class="header">В процессе</div>
+            <div class="content droppable"></div>
+        </div>
+        <div class="column">
+            <div class="header">Завершено</div>
+            <div class="content droppable"></div>
+        </div>
+    </div>
+  <script>
+
+    const container = document.querySelector('.content')
+    document.querySelector('button').addEventListener('click', () => {
+        const message = prompt('')
+        let div = document.createElement('div')
+        div.classList = 'item draggable'
+        div.draggable = true
+        div.innerHTML = message
+        container.append(div)
+    })
+    
+
+    let dragItem
+
+    document.querySelector('.container').addEventListener('dragstart', function (e) {
+        if(e.target.classList.contains('draggable')) {
+            dragItem = e.target
+            e.target.classList.add('dragging')
+        }
+    })
+
+    document.querySelector('.container').addEventListener('dragend', function (e) {
+        if(e.target.classList.contains('draggable')) {
+            e.target.classList.remove('dragging')
+        }
+    })
+ 
+    // document.querySelectorAll('.draggable').forEach(item => {
+    //     item.addEventListener('dragstart', function (e) {
+    //         dragItem = e.target
+    //         e.target.classList.add('dragging')
+    //     })
+
+    //     item.addEventListener('dragend', function (e) {
+    //         e.target.classList.remove('dragging')
+    //     })
+    // })
+ 
+    document.querySelectorAll('.droppable').forEach(item => {
+        item.addEventListener('dragover', e => e.preventDefault())
+        item.addEventListener('drop', e => {
+            const droppable = e.target.closest('.droppable')
+            droppable.append(dragItem)
+        })
+    })
+  </script>
+</body>
+</html>
