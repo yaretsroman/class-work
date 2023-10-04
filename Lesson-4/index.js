@@ -1,4 +1,4 @@
-// Task 1
+// // Task 1
 
 // let c = 0;
 
@@ -24,7 +24,7 @@
 
 // console.log(c);
 
-// Task 2
+// // Task 2
 
 // let sum = 0;
 // let multiply = 1;
@@ -34,7 +34,7 @@
 // })
 // console.log(`Сумма - ${sum}, Произведение - ${multiply}`);
 
-///////////
+// /////////
 
 // const result = [1, 2, 3, 4, 5, 6].reduce((acc, number) => {
 //     return {
@@ -48,7 +48,7 @@
 
 // console.log(result);
 
-// Task 3
+// // Task 3
 
 // function arrSum(arr1, arr2) {
 //     let length = arr1.length > arr2.length ? arr1.length : arr2.length
@@ -71,7 +71,7 @@
 
 // console.log(arrSum([1,0,2,3,4], [3,5,6,7,8,13]));
 
-///////////
+// /////////
 
 // function arrSum(arr1, arr2) {
 //     let length = arr1.length > arr2.length ? arr1.length : arr2.length
@@ -87,7 +87,7 @@
 
 // console.log(arrSum([1,0,2,3,4], [3,5,6,7,8,13]));
 
-///////////
+// /////////
 
 // function arrSum(arr1, arr2) {
 //     let length = arr1.length > arr2.length ? arr1.length : arr2.length
@@ -101,7 +101,7 @@
 
 // console.log(arrSum([1,0,2,3,4], [3,5,6,7,8,13]));
 
-// Task 4
+// // Task 4
 
 // function removeArrayElement(arr, el) {
 //     return arr.filter(item => item !== el)
