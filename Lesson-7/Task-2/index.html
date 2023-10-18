@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson-7 Task-2</title>
+</head>
+<body>
+<form>
+    <button type="submit">Подтвердить</button>
+</form>
+<script>
+
+    const countries = {
+        US: 'United States',
+        BY: 'Belarus',
+        BE: 'Belgium',
+        HR: 'Croatia',
+    }
+
+
+    const languages = {
+        ru: 'Russian',
+        en: 'English'
+    }
+
+    const select = document.createElement('select')
+    const form = document.querySelector('form')
+
+    for (let countryCode in countries) {
+        const option = document.createElement('option')
+        option.innerHTML = countries[countryCode]
+        option.value = countryCode
+        select.append(option)
+    }
+
+    form.prepend(select)
+
+    for (let languageCode in languages) {
+        const div = document.createElement('div')
+        const input = document.createElement('input')
+        input.type = 'radio'
+        input.name = 'language'
+        input.value = 'languageCode'
+        const span = document.createElement('span')
+        span.innerHTML = languages[languageCode]
+        div.append(input)
+        div.append(span)
+        form.append(div)
+    }
+
+    form.addEventListener('submit', e => {
+        e.preventDefault()
+        const language = [...document.querySelectorAll('[name="language"]')].find(element => element.checked)?.value
+        alert(`Страна - ${select.value}, язык - ${language}`)
+    })
+</script>
+</body>
+</html>
