@@ -2,11 +2,134 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="./index.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson-9</title>
 </head>
 <body>
-    
+    <script>
+        // Task 1
+
+        // const search = arr => arr.every(el => el % 2 === 0)
+       
+        // console.log(search([1,23,4,5]));
+        // console.log(search([2,4,26]));
+
+        function search(arr) {
+            return arr.every(el => el % 2 === 0)
+        }
+
+        console.log(search([1,23,4,5]));
+        console.log(search([2,4,26]));
+
+        // Task 2
+
+        function isPrime (number) {
+            for (let i = 2; i < number; i++) {
+                if (number % i === 0) {
+                    return false
+                }
+            }
+            return true
+        }
+
+        console.log(isPrime(4));
+
+        // Task 3
+
+        function isPalindrome (number) {
+            const str = String(number)
+
+            return str.split('').reverse().join('') === str
+        }
+
+        function hasPalindrome (arr) {
+            return arr.some(el => isPalindrome(el))
+        }
+
+        console.log(hasPalindrome([1314,23,433,54324]));
+        console.log(hasPalindrome([24,4223,2662]));
+
+        // Task 4
+
+        // const getPrimeNumbers = (arr) => arr.filter(isPrime)
+        const getPrimeNumbers = (arr) => arr.filter(number => isPrime(number))
+
+        console.log(getPrimeNumbers ([4, 8, 27, 33]));
+        console.log(getPrimeNumbers ([11, 13, 22, 100, 43, 101]));
+
+        // Task 5
+
+        const deposits = [
+          {
+              currency: 'USD',
+              count: 1000,
+          },
+          {
+              currency: 'BYN',
+              count: 1500,
+          },
+          {
+              currency: 'BYN',
+              count: 9000,
+          },
+        ]
+
+        const newBalance = deposits.map(el => {
+            let newCount = el.count
+            if (el.currency === 'BYN') {
+                newCount = newCount + newCount * (19 / (12 * 100))
+            } else if (el.currency === 'USD')
+            newCount = newCount + newCount * (2.5 / (12 * 100))
+
+            return {
+                currency: el.currency,
+                count: newCount,
+            }
+        })
+
+        console.log(newBalance);
+
+        // Task 5.2
+
+        const deposits1 = [
+         {
+             currency: 'USD',
+             count: 1000,
+         },
+         {
+             currency: 'BYN',
+             count: 1500,
+         },
+         {
+             currency: 'BYN',
+             count: 9000,
+         },
+         {
+             currency: 'EUR',
+             count: 12,
+         },
+         {
+             currency: 'BYN',
+             count: 550,
+         },
+         {
+             currency: 'USD',
+             count: 330,
+         },
+        ]
+
+        const balances = deposits1.reduce(function (acc, el) {
+            const {currency, count} = el
+            if (acc[currency]) {
+                acc[currency] = acc[currency] + count
+            } else {
+                acc[currency] = count
+            }
+            return acc
+        }, {})
+
+        console.log(balances);
+        
+    </script>
 </body>
 </html>
